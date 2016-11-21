@@ -2,7 +2,7 @@
     "name": "h-zone/laravel-forums-engine",
     "description": "Forums for your Laravel Framework",
     "keywords": [ "h-zone", "hzone", "forum", "laravel" ],
-    "homepage" : "https://github.com/h-zone/laravel-forum-engine",
+    "homepage" : "https://github.com/h-zone/laravel-forums-engine",
     "license": "MIT",
     "authors": [
         {
