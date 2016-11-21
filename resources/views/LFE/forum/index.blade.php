@@ -11,7 +11,7 @@
 	@include( 'LFE.forums._forums_block', [ 'Forums' => $Forum->childs ] )
 @endif
 @if ( $Forum->is_category !== true )
-	@include( 'LFE.forum._topics_block', [ 'Topics' => $Forum->topics ] )
+	@include( 'LFE.forum._topics_block', [ 'Topics' => $Topics ] )
 @endif
 </div>
 @endsection

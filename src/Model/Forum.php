@@ -3,7 +3,6 @@ namespace Hzone\LFE\Model;
 
 use Hzone\LFE\Scopes\ActiveScope;
 use Illuminate\Database\Eloquent\Model;
-use \DB;
 
 class Forum extends Model
 {
@@ -35,9 +34,7 @@ class Forum extends Model
 	 */
 	public function user()
 	{
-		return $this->belongsTo( config( 'LFE.User' ) )
-			->select( 'id', 'email', config( 'LFE.username_column' ) )
-			;
+		return $this->belongsTo( config( 'LFE.User' ) )->select( 'id', 'email', config( 'LFE.username_column' ) );
 	}
 
 	/**
@@ -45,8 +42,7 @@ class Forum extends Model
 	 */
 	public function topics()
 	{
-		return $this->hasMany( Topic::class )
-			;
+		return $this->hasMany( Topic::class );
 	}
 
 	/**
@@ -66,19 +62,20 @@ class Forum extends Model
 	}
 
 	/**
-	 * get topics list ordered by posts updated_at column
+	 * get topics list ordered by related posts updated_at column
 	 * @return Collection
 	 */
 	public function getTopics()
 	{
 		/**
-		 * some hardcoded, but need to sort by related model !
+		 * researched.
 		 */
 		$Post       = new Post;
-		$postTable  = $Post->getTable();
 		$Topic      = new Topic;
+
+		$postTable  = $Post->getTable();
 		$topicTable = $Topic->getTable();
-		$forumId    = $this->id;
+
 		unset( $Post );
 		unset( $Topic );
 
@@ -87,7 +84,9 @@ class Forum extends Model
 			->select( $topicTable. '.*' )
 			->with( 'post' )
 			->with( 'user' )
+			->where( $topicTable.'.forum_id', '=', $this->id )
 			->paginate( config( 'LFE.paginate.topics' ) )
 		;
 	}
+
 }
