@@ -7,7 +7,7 @@ Forum engine for Your Laravel Framework
 
 ## Intallation
 ```
-composer require "h-zone/laravel-forum-engine":"^0.1-dev"
+composer require "h-zone/laravel-forums-engine":"^0.1-dev"
 ```
 
 config/app.php
