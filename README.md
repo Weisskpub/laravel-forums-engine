@@ -26,4 +26,3 @@ see:
 resources/config/LFE.php
 resources/lang/en/LFE.php
 resources/views/LFE
-
