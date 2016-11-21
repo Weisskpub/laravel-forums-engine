@@ -22,7 +22,7 @@ Publishing
 ```
 php artisan LFE:install
 ```
-see:
-resources/config/LFE.php
-resources/lang/en/LFE.php
-resources/views/LFE
+See:
+* resources/config/LFE.php
+* resources/lang/en/LFE.php
+* resources/views/LFE
