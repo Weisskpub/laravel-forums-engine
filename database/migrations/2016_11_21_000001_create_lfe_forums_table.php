@@ -23,10 +23,13 @@ class CreateLfeForumsTable extends Migration
 			$table->boolean('is_active')->default(TRUE)->index();
 			$table->smallInteger('rank')->default(0)->index();
 
-			$table->bigInteger('user_id')->index()->nullable(); // last post info cache
+			$table->timestamps();
+			$table->bigInteger('updated_by')->index()->nullable(); // last post info cache
 			$table->bigInteger('topic_id')->index()->nullable(); // last post info cache
 			$table->bigInteger('post_id')->index()->nullable(); // last post info cache
 
+			$table->index( 'created_at' );
+			$table->index( 'updated_at' );
 			$table->index(['parent_id','id']);
 		});
 	}

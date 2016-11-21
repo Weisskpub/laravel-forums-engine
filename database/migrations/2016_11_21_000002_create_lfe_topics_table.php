@@ -6,32 +6,40 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLfeTopicsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('lfe_topics', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('forum_id')->index();
-            $table->bigInteger('user_id')->index();
-            $table->boolean('is_active')->index();
-            $table->integer('views')->default(0);
-            $table->string('title')->index();
-            
-            $table->foreign('forum_id')->references('id')->on( 'lfe_forums' )->onDelete('cascade');
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('lfe_topics', function (Blueprint $table) {
+			$table->bigIncrements('id');
+			$table->bigInteger('forum_id')->index();
+			$table->bigInteger('user_id')->index();
+			$table->boolean('is_active')->index();
+			$table->integer('views')->default(0);
+			$table->string('title')->index();
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('lfe_topics');
-    }
+			$table->timestamps();
+			$table->bigInteger('updated_by')->nullable()->index();
+			$table->bigInteger('topic_id')->index()->nullable(); // last post info cache
+			$table->bigInteger('post_id')->index()->nullable(); // last post info cache
+
+			$table->index( 'created_at' );
+			$table->index( 'updated_at' );
+
+			$table->foreign('forum_id')->references('id')->on( 'lfe_forums' )->onDelete('cascade');
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('lfe_topics');
+	}
 }

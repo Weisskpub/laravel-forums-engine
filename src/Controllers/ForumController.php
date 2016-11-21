@@ -14,7 +14,10 @@ class ForumController extends Controller
 			->with( 'user' )
 			->with( 'childs' )
 			->find( $id );
-		$Topics = $Forum->getTopics();
+		$Topics = $Forum
+			->topics()
+			->orderBy( config( 'LFE.orderby.topics.column'), config( 'LFE.orderby.topics.direction') )
+			->paginate(10);
 		return view( 'LFE.forum.index', [ 'Forum' => $Forum, 'Topics' => $Topics ] );
 	}
 }
