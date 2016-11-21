@@ -1,5 +1,5 @@
-# LFE - Laravel Forum Engine
-Forum engine for Your Laravel Framework
+# LFE - Laravel Forums Engine
+Forums engine for Your Laravel Framework
 
 ## Attention !
 - Support for now Laravel 5.3 only, another versions is not tested!
@@ -17,12 +17,12 @@ config/app.php
 	Hzone\LFE\LFEServiceProvider::class,
 	//....
 ],
-
+```
 Publishing
 ```
 php artisan LFE:install
 ```
-see:
-resources/config/LFE.php
-resources/lang/en/LFE.php
-resources/views/LFE
+See:
+* resources/config/LFE.php
+* resources/lang/en/LFE.php
+* resources/views/LFE
