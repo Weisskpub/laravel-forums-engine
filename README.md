@@ -17,7 +17,7 @@ config/app.php
 	Hzone\LFE\LFEServiceProvider::class,
 	//....
 ],
-
+```
 Publishing
 ```
 php artisan LFE:install
