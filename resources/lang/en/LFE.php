@@ -1,0 +1,32 @@
+<?php
+return [
+	'user'          => [
+		'access-denied' => 'Access denied for this account. To gain access please contact the Administrator.',
+	],
+	'datetime'      => [
+		'today'     => 'Today at :at',
+		'yesterday' => 'Yesterday at :at',
+	],
+	'forums'        => 'Forums',
+	'topics'        => 'Topics',
+	'posts'         => 'Posts',
+	'title'         => 'Title',
+	'lastpost'      => 'Last Post',
+	'author'        => 'Author',
+	'rating'        => 'Rating',
+	'views'         => 'Views',
+	''              => '',
+	''              => '',
+	''              => '',
+	''              => '',
+	''              => '',
+	''              => '',
+	'subforums'     => 'Subforums',
+	'no-topics-yet' => 'No topics yet',
+	'registered_at' => 'Registered at',
+	'posts_count'   => 'Posts',
+	''              => '',
+	''              => '',
+	''              => '',
+	''              => '',
+];
