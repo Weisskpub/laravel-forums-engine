@@ -77,7 +77,7 @@ class LFEInstallCommand extends Command
 		}
 		catch ( Exception $e )
 		{
-			$this->warning( '"h-zone/laravel-backup-commands" NOT YET INSTALLED (CONFIGURED) ?' );
+			$this->info( '"h-zone/laravel-backup-commands" NOT YET INSTALLED (CONFIGURED) ?' );
 		}
 		if ( !$this->option( 'purge' ) )
 		{
@@ -89,7 +89,7 @@ class LFEInstallCommand extends Command
 		if ( !is_file( base_path() . '/image.php' ) )
 		{
 			Artisan::call( 'vendor:publish', [ '--provider' => 'Intervention\Image\ImageServiceProviderLaravel5' ] );
-			$this->warning( 'Need to be configured "config/image.php"' );
+			$this->info( 'Need to be configured "config/image.php"' );
 		}
 		$this->info( "Migrating the database tables into your application" );
 		Artisan::call( 'migrate' );
