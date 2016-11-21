@@ -1,5 +1,5 @@
-# LFE - Laravel Forum Engine
-Forum engine for Your Laravel Framework
+# LFE - Laravel Forums Engine
+Forums engine for Your Laravel Framework
 
 ## Attention !
 - Support for now Laravel 5.3 only, another versions is not tested!
