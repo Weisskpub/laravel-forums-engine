@@ -3,6 +3,7 @@ namespace Hzone\LFE\Model;
 
 use Hzone\LFE\Scopes\ActiveScope;
 use Illuminate\Database\Eloquent\Model;
+use \DB;
 
 class Forum extends Model
 {
@@ -45,7 +46,6 @@ class Forum extends Model
 	public function topics()
 	{
 		return $this->hasMany( Topic::class )
-			->orderBy( config( 'LFE.orderby.topics.column' ), config( 'LFE.orderby.topics.direction' ) )
 			;
 	}
 
@@ -63,5 +63,31 @@ class Forum extends Model
 	public function post()
 	{
 		return $this->hasOne( Post::class, 'id', 'post_id' );
+	}
+
+	/**
+	 * get topics list ordered by posts updated_at column
+	 * @return Collection
+	 */
+	public function getTopics()
+	{
+		/**
+		 * some hardcoded, but need to sort by related model !
+		 */
+		$Post       = new Post;
+		$postTable  = $Post->getTable();
+		$Topic      = new Topic;
+		$topicTable = $Topic->getTable();
+		$forumId    = $this->id;
+		unset( $Post );
+		unset( $Topic );
+
+		return Topic::join( $postTable, $postTable.'.topic_id', '=', $topicTable.'.id' )
+			->orderBy( config( 'LFE.orderby.topics.column'), config( 'LFE.orderby.topics.direction') )
+			->select( $topicTable. '.*' )
+			->with( 'post' )
+			->with( 'user' )
+			->paginate( config( 'LFE.paginate.topics' ) )
+		;
 	}
 }

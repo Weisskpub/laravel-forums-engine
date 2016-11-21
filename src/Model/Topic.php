@@ -63,4 +63,15 @@ class Topic extends Model
 			;
 	}
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function orderablePosts()
+	{
+		return $this->hasMany( Post::class )
+			->select( 'id', 'topic_id', 'forum_id', 'user_id', 'updated_at' )
+			->orderBy( config( 'LFE.orderby.posts.column' ), config( 'LFE.orderby.posts.direction' ) )
+			;
+	}
+
 }

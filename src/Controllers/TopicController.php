@@ -12,6 +12,7 @@ class TopicController extends Controller
 			'posts' => function ( $query )
 			{
 				return $query->with( 'user' )
+					->orderBy( config( 'LFE.orderby.posts.column'), config( 'LFE.orderby.posts.direction') )
 					->paginate( config( 'LFE.paginate.posts' ) )
 					;
 			},
@@ -19,8 +20,6 @@ class TopicController extends Controller
 			->with( 'post', 'post.user', 'forum' )
 			->find( $id )
 		;
-
-		//dd($Topic->toArray());
 		return view( 'LFE.topic.index', [ 'Topic' => $Topic ] );
 	}
 }

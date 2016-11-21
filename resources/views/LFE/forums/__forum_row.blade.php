@@ -3,7 +3,7 @@
 							<div>
 								<div class="title-lg"><a href="{{ \Hzone\LFE\Satellite::makeForumUrl($Forum) }}">{{ $Forum->title }}</a></div>
 @if( !empty( $Forum->description ) )
-								<div class="muted hidden-xs">{{ $Forum->description }}</div>
+								<div class="muted hidden-xs small">{{ $Forum->description }}</div>
 @endif
 							</div>
 @if(count($Forum->childs ) )
