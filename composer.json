@@ -1,6 +1,8 @@
 {
     "name": "h-zone/laravel-forums-engine",
     "description": "Forums for your Laravel Framework",
+    "keywords": [ "h-zone", "hzone", "forum", "laravel" ],
+    "homepage" : "https://github.com/h-zone/laravel-forum-engine",
     "license": "MIT",
     "authors": [
         {
@@ -8,12 +10,27 @@
             "email": "me@h-zone.ru"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
     "require": {
         "php":">=5.6.4",
         "illuminate/support": "5.3.*",
         "intervention/image": "^2.3",
         "doctrine/dbal": "^2.5",
         "h-zone/laravel-backup-commands": "~0.1-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hzone\\LFE\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hzone\\LFE\\": "src/"
+        }
     }
 }
