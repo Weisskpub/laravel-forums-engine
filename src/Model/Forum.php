@@ -34,7 +34,7 @@ class Forum extends Model
 	 */
 	public function user()
 	{
-		return $this->belongsTo( config( 'LFE.User' ) )->select( 'id', 'email', config( 'LFE.username_column' ) );
+		return $this->belongsTo( config( 'LFE.User' ) );
 	}
 
 	/**

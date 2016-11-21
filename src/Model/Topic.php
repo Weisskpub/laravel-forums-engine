@@ -30,7 +30,6 @@ class Topic extends Model
 	public function user()
 	{
 		return $this->belongsTo( config( 'LFE.User' ) )
-			->select( 'id', 'email', config( 'LFE.username_column' ) )
 			;
 	}
 
@@ -48,7 +47,6 @@ class Topic extends Model
 	public function post()
 	{
 		return $this->hasOne( Post::class )
-			->select( 'id', 'updated_at', 'user_id', 'topic_id' )
 			->orderBy( 'updated_at', 'desc' )
 			;
 	}
@@ -69,7 +67,6 @@ class Topic extends Model
 	public function orderablePosts()
 	{
 		return $this->hasMany( Post::class )
-			->select( 'id', 'topic_id', 'forum_id', 'user_id', 'updated_at' )
 			->orderBy( config( 'LFE.orderby.posts.column' ), config( 'LFE.orderby.posts.direction' ) )
 			;
 	}

@@ -39,7 +39,7 @@ return [
 			'direction' => 'ASC',
 		],
 		'topics' => [						// ->orderBy( config( 'LFE.orderby.topics.column'), config( 'LFE.orderby.topics.direction') )
-			'column'	=> 'last_updated',
+			'column'	=> 'updated_at',
 			'direction' => 'DESC',
 		],
 		'posts' => [						// ->orderBy( config( 'LFE.orderby.posts.column'), config( 'LFE.orderby.posts.direction') )
