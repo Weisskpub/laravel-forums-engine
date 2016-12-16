@@ -14,23 +14,19 @@ class CreateLfeForumsTable extends Migration
 	public function up()
 	{
 		Schema::create('lfe_forums', function (Blueprint $table) {
-			$table->bigIncrements('id');
-			$table->bigInteger('parent_id')->default(0);
+			$table->increments('id');
+			$table->integer('f_aggr_id')->index();
+			$table->integer('parent_id')->default(0)->index();
+			$table->smallInteger('rank')->default(0)->index();
+			$table->boolean('is_active')->default(TRUE)->index();
+			$table->boolean('is_category')->default(FALSE);
 			$table->string('title')->index();
 			$table->text('description')->nullable();
-			$table->string('keywords')->nullable();
-			$table->boolean('is_category')->default(FALSE);
-			$table->boolean('is_active')->default(TRUE)->index();
-			$table->smallInteger('rank')->default(0)->index();
-
+			$table->bigInteger('last_post')->nullable();
 			$table->timestamps();
-			$table->bigInteger('updated_by')->index()->nullable(); // last post info cache
-			$table->bigInteger('topic_id')->index()->nullable(); // last post info cache
-			$table->bigInteger('post_id')->index()->nullable(); // last post info cache
-
 			$table->index( 'created_at' );
 			$table->index( 'updated_at' );
-			$table->index(['parent_id','id']);
+			$table->foreign('f_aggr_id')->references('id')->on('lfe_faggrs')->onDelete('cascade');
 		});
 	}
 

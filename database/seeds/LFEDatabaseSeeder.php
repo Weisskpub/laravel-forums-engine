@@ -1,174 +1,155 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Hzone\LFE\Model\FAggr;
+use Hzone\LFE\Model\Forum;
+use Hzone\LFE\Model\Topic;
+use Hzone\LFE\Model\Post;
+
 
 class LFEDatabaseSeeder extends Seeder
 {
-
 	/**
-	 * Auto generated seed file
+	 * Run the database seeds.
 	 *
 	 * @return void
 	 */
 	public function run()
 	{
-		\DB::table('lfe_forums')->delete();
-		\DB::table('lfe_forums')->insert([
-			[
-				'id'          => 1,
-				'parent_id'   => 0,
-				'title'       => 'General Forum',
-				'description' => 'Single Forum',
-				'keywords'    => 'h-zone, Laravel, Forum, Engine',
-				'is_category' => false,
-				'is_active'   => true,
-				'rank'        => 100,
-				'updated_by'  => 1,
-				'topic_id'    => 5,
-				'post_id'     => 16,
-				'created_at'  => null,
-				'updated_at'  => null,
-			],
-			[
-				'id'          => 2,
-				'parent_id'   => 0,
-				'title'       => 'Forum-Category 1',
-				'description' => 'Forum with subforums. NOT able to meke topics in root category, only subforums',
-				'keywords'    => 'h-zone, Laravel, Forum, Engine',
-				'is_category' => true,
-				'is_active'   => true,
-				'rank'        => 200,
-				'updated_by'  => null,
-				'topic_id'    => null,
-				'post_id'     => null,
-				'created_at'  => null,
-				'updated_at'  => null,
-			],
-			[
-				'id'          => 5,
-				'parent_id'   => 2,
-				'title'       => 'Subforum 1/1',
-				'description' => 'Normal forum under Forum-Category 1',
-				'keywords'    => 'h-zone, Laravel, Forum, Engine',
-				'is_category' => false,
-				'is_active'   => true,
-				'rank'        => 100,
-				'updated_by'  => null,
-				'topic_id'    => null,
-				'post_id'     => null,
-				'created_at'  => '2016-11-21 22:20:00',
-				'updated_at'  => '2016-11-21 22:20:00',
-			],
-			[
-				'id'          => 6,
-				'parent_id'   => 2,
-				'title'       => 'Subforum 1/2',
-				'description' => 'Normal forum under Forum-Category 1',
-				'keywords'    => 'h-zone, Laravel, Forum, Engine',
-				'is_category' => false,
-				'is_active'   => true,
-				'rank'        => 200,
-				'updated_by'  => null,
-				'topic_id'    => null,
-				'post_id'     => null,
-				'created_at'  => null,
-				'updated_at'  => null,
-			],
-			[
-				'id'          => 3,
-				'parent_id'   => 0,
-				'title'       => 'Forum-Category 2',
-				'description' => 'Forum with subforums. You able to meke topics in root category and subforums',
-				'keywords'    => 'h-zone, Laravel, Forum, Engine',
-				'is_category' => false,
-				'is_active'   => true,
-				'rank'        => 300,
-				'updated_by'  => null,
-				'topic_id'    => null,
-				'post_id'     => null,
-				'created_at'  => null,
-				'updated_at'  => null,
-			],
-			[
-				'id'          => 7,
-				'parent_id'   => 3,
-				'title'       => 'Subforum 2/1',
-				'description' => 'Normal forum under Forum-Category 2',
-				'keywords'    => 'h-zone, Laravel, Forum, Engine',
-				'is_category' => false,
-				'is_active'   => true,
-				'rank'        => 100,
-				'updated_by'  => null,
-				'topic_id'    => null,
-				'post_id'     => null,
-				'created_at'  => null,
-				'updated_at'  => null,
-			],
-			[
-				'id'          => 8,
-				'parent_id'   => 3,
-				'title'       => 'Subforum 2/2',
-				'description' => 'Normal forum under Forum-Category 2',
-				'keywords'    => 'h-zone, Laravel, Forum, Engine',
-				'is_category' => false,
-				'is_active'   => true,
-				'rank'        => 200,
-				'updated_by'  => null,
-				'topic_id'    => null,
-				'post_id'     => null,
-				'created_at'  => null,
-				'updated_at'  => null,
-			],
-			[
-				'id'          => 4,
-				'parent_id'   => 0,
-				'title'       => 'Hidden Forum',
-				'description' => 'Hidden forums can view only admins',
-				'keywords'    => 'h-zone, Laravel, Forum, Engine',
-				'is_category' => false,
-				'is_active'   => false,
-				'rank'        => 400,
-				'updated_by'  => null,
-				'topic_id'    => null,
-				'post_id'     => null,
-				'created_at'  => null,
-				'updated_at'  => null,
-			],
+		DB::table('lfe_faggrs')->delete();
+		DB::table('users')->whereIn('email',['admin@admin.com','moderator@moderator.com'])->delete();
+		
+		$User1 = App\User::create([
+			'name'     => 'iAdmin',
+			'email'    => 'admin@admin.com',
+			'password' => '$2y$10$SgWTGun9TGxEMbe9SgVgnurwolpQ0sjjV6iYjmyVMJdZetckZhy4O', // 111111
+		]);
+		$User2 = App\User::create([
+			'name'     => 'iModerator',
+			'email'    => 'moderator@moderator.com',
+			'password' => '$2y$10$SgWTGun9TGxEMbe9SgVgnurwolpQ0sjjV6iYjmyVMJdZetckZhy4O', // 111111
 		]);
 
-		\DB::table('lfe_topics')->insert([
-			['id' => 1, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 01', 'created_at'=>'2016-11-21 21:00:00','updated_at'=>'2016-11-21 21:00:00','updated_by'=>1],
-			['id' => 2, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 02', 'created_at'=>'2016-11-21 21:05:00','updated_at'=>'2016-11-21 21:05:00','updated_by'=>1],
-			['id' => 3, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 03', 'created_at'=>'2016-11-21 21:10:00','updated_at'=>'2016-11-21 21:10:00','updated_by'=>1],
-			['id' => 4, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 04', 'created_at'=>'2016-11-21 21:15:00','updated_at'=>'2016-11-21 21:15:00','updated_by'=>1],
-			['id' => 5, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 05', 'created_at'=>'2016-11-21 22:20:00','updated_at'=>'2016-11-21 22:20:00','updated_by'=>1],
-			['id' => 6, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 06', 'created_at'=>'2016-11-21 21:25:00','updated_at'=>'2016-11-21 21:25:00','updated_by'=>1],
-			['id' => 7, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 07', 'created_at'=>'2016-11-21 21:30:00','updated_at'=>'2016-11-21 21:30:00','updated_by'=>1],
-			['id' => 8, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 08', 'created_at'=>'2016-11-21 21:35:00','updated_at'=>'2016-11-21 21:35:00','updated_by'=>1],
-			['id' => 9, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 09', 'created_at'=>'2016-11-21 21:40:00','updated_at'=>'2016-11-21 21:40:00','updated_by'=>1],
-			['id' => 10, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 10', 'created_at'=>'2016-11-21 22:10:00','updated_at'=>'2016-11-21 22:10:00','updated_by'=>1],
-			['id' => 11, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'views' => 0, 'title' => 'Topic 11', 'created_at'=>'2016-11-21 21:50:00','updated_at'=>'2016-11-21 21:50:00','updated_by'=>1],
+		$Faggr1             = FAggr::create(['rank'=>100,'is_active'=>true,'title'=>'Forums Group 1']);
+		$Faggr2             = FAggr::create(['rank'=>200,'is_active'=>true,'title'=>'Forums Group 2']);
+		$InactiveFaggr3     = FAggr::create(['rank'=>300,'is_active'=>false,'title'=>'Inactive (hidden) Forums Group 3']);
+
+		$RootForum1         = $Faggr1->forums()->create([
+			'rank'        => 100,
+			'is_category' => false,
+			'title'       => 'General Forum',
+			'description' => 'This is a normal Forum',
 		]);
-		
-		\DB::table('lfe_posts')->insert([
-			['id' => 1,'topic_id' => 1, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:00:00','updated_at' => '2016-11-21 21:00:00',],
-			['id' => 2,'topic_id' => 2, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:05:00','updated_at' => '2016-11-21 21:05:00',],
-			['id' => 3,'topic_id' => 3, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:10:00','updated_at' => '2016-11-21 21:10:00',],
-			['id' => 4,'topic_id' => 4, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:15:00','updated_at' => '2016-11-21 21:15:00',],
-			['id' => 5,'topic_id' => 5, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:20:00','updated_at' => '2016-11-21 21:20:00',],
-			['id' => 6,'topic_id' => 6, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:25:00','updated_at' => '2016-11-21 21:25:00',],
-			['id' => 7,'topic_id' => 7, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:30:00','updated_at' => '2016-11-21 21:30:00',],
-			['id' => 8,'topic_id' => 8, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:35:00','updated_at' => '2016-11-21 21:35:00',],
-			['id' => 9,'topic_id' => 9, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:40:00','updated_at' => '2016-11-21 21:40:00',],
-			['id' => 10,'topic_id' => 10, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:45:00','updated_at' => '2016-11-21 21:45:00',],
-			['id' => 11,'topic_id' => 11, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:50:00','updated_at' => '2016-11-21 21:50:00',],
-			['id' => 12,'topic_id' => 10, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 21:55:00','updated_at' => '2016-11-21 21:55:00',],
-			['id' => 13,'topic_id' => 10, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 22:00:00','updated_at' => '2016-11-21 22:00:00',],
-			['id' => 14,'topic_id' => 10, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 22:10:00','updated_at' => '2016-11-21 22:10:00',],
-			['id' => 15,'topic_id' => 5, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 22:15:00','updated_at' => '2016-11-21 22:15:00',],
-			['id' => 16,'topic_id' => 5, 'forum_id' => 1, 'user_id' => 1, 'is_active' => true, 'body' => str_random(60),'created_at' => '2016-11-21 22:20:00','updated_at' => '2016-11-21 22:20:00', ],
+		$RootForum2         = $Faggr1->childs()->create([
+			'rank'        => 200,
+			'is_category' => true,
+			'title'       => 'Another Forum',
+			'description' => 'This is a Category Forum (Posts not allowed in category)',
 		]);
+			$SubForum2_1      = $RootForum2->childs()->create([
+				'f_aggr_id'   => $Faggr1->id,
+				'rank'        => 100,
+				'is_category' => false,
+				'title'       => 'Another Forum Sub.1',
+				'description' => 'This is a SubForum 1 of Another Forum',
+			]);
+			$SubForum2_2      = $RootForum2->childs()->create([
+				'f_aggr_id'   => $Faggr1->id,
+				'rank'        => 200,
+				'is_category' => false,
+				'title'       => 'Another Forum Sub.2',
+				'description' => 'This is a SubForum 1 of Another Forum',
+			]);
+		$RootForum3         = $Faggr2->childs()->create([
+			'rank'        => 100,
+			'is_category' => false,
+			'title'       => 'Third Forum',
+			'description' => 'This is a Forum with subforums',
+		]);
+			$SubForum3_1      = $RootForum3->childs()->create([
+				'f_aggr_id'   => $Faggr2->id,
+				'rank'        => 100,
+				'is_category' => false,
+				'title'       => 'Third Forum Sub.1',
+				'description' => 'This is a SubForum 1 of Third Forum',
+			]);
+			$SubForum3_2      = $RootForum3->childs()->create([
+				'f_aggr_id'   => $Faggr2->id,
+				'rank'        => 200,
+				'is_category' => false,
+				'title'       => 'Third Forum Sub.2',
+				'description' => 'This is a SubForum 1 of Third Forum',
+			]);
+
+		$Topic1 = $RootForum1->topics()->create([
+			'user_id'   => $User1->id,
+			'is_active' => true,
+			'title'     => 'Welcome!',
+		]);
+			$Post = $Topic1->posts()->create([
+				'user_id'   => $User1->id,
+				'is_active' => true,
+				'ip'        => '123.45.67.89',
+				'message'   => '
+Look the source at https://github.com/h-zone/laravel-forums-engine !
+
+[size=6]Base Formatting[/size]
+[b]BOLD[/b]
+[i]ITALIC[/i]
+[u]UNDERLINE[/u]
+[s]STRIKEOUT[/s]
+[color=#ff0000][b]STRIKEOUT[/b][/color]
+[url=https://www.google.com]Named Link (www.google.com[/url]
+Just link: [url]https://www.google.com/[/url]
+
+And more at https://github.com/golonka/bbcodeparser !
+
+',
+			]);
+		$Topic2 = $RootForum1->topics()->create([
+			'user_id'   => $User1->id,
+			'is_active' => true,
+			'title'     => 'Just for test 0001',
+		]);
+			$Post = $Topic2->posts()->create([
+				'user_id'   => $User1->id,
+				'is_active' => true,
+				'ip'        => '123.45.67.89',
+				'message'   => 'test',
+			]);
+		$Topic3 = $RootForum1->topics()->create([
+			'user_id'   => $User2->id,
+			'is_active' => true,
+			'title'     => 'Just for test 0002',
+		]);
+			$Post = $Topic3->posts()->create([
+				'user_id'   => $User2->id,
+				'is_active' => true,
+				'ip'        => '234.56.78.90',
+				'message'   => 'test',
+			]);
+		$Topic4 = $RootForum1->topics()->create([
+			'user_id'   => $User2->id,
+			'is_active' => true,
+			'title'     => 'Just for test 0003',
+		]);
+			$Post = $Topic4->posts()->create([
+				'user_id'   => $User2->id,
+				'is_active' => true,
+				'ip'        => '234.56.78.90',
+				'message'   => 'test',
+			]);
+		$Topic5 = $SubForum3_1->topics()->create([
+			'user_id'   => $User1->id,
+			'is_active' => true,
+			'title'     => 'Just for test 0004',
+		]);
+			$Post = $Topic5->posts()->create([
+				'user_id'   => $User1->id,
+				'is_active' => true,
+				'ip'        => '123.45.67.89',
+				'message'   => 'test',
+			]);
 
 	}
 }
-

@@ -4,15 +4,13 @@
 .nobr {
 	white-space : nowrap
 }
-.bold {
-	font-weight : bold
-}
 .italic {
 	font-style : italic
 }
 .title-sm {
-	font-size   : 14px;
-	font-weight : bold
+	font-size      : 10px;
+	font-weight    : 600;
+	text-transform : uppercase;
 }
 .title-md {
 	font-size : 16px
@@ -26,9 +24,6 @@
 .muted {
 	opacity : 0.75
 }
-.row-end {
-	border-bottom : 1px solid #eeeeee
-}
 .badge-danger {
 	background-color : #f2dede;
 	color            : #a94442;
@@ -38,4 +33,235 @@
 	background-color : #dff0d8;
 	border-color     : #d6e9c6;
 	color            : #3c763d;
+}
+.subforums-block {
+	padding-left : 5px;
+}
+.no-new-posts {
+	opacity : 0.25
+}
+i.fa {
+	cursor : default;
+}
+.bordered {
+	border-width : 1px;
+}
+.bordered.solid {
+	border-style : solid;
+}
+.bordered.dashed {
+	border-style : dashed;
+}
+.bordered.double {
+	border : 3px double;
+}
+.bordered.dotted {
+	border-style : dotted;
+}
+.bordered.red {
+	border-color : red;
+}
+.bordered.green {
+	border-color : green;
+}
+.bordered.blue {
+	border-color : blue;
+}
+.bordered.black {
+	border-color : black;
+}
+.bordered.gray {
+	border-color : gray;
+}
+.bordered.silver {
+	border-color : silver;
+}
+.bordered.white {
+	border-color : white;
+}
+/**
+ * LFE
+ */
+.lfe-forum-row {
+	background-color    : rgba(0, 0, 0, 0);
+	border              : 1px solid rgba(0, 0, 0, 0);
+	border-bottom-color : #eeeeee;
+	min-height          : 50px;
+}
+.lfe-forum-row:hover {
+	background-color : rgba(238, 238, 238, 0.15);
+}
+.lfe-topic-row {
+	background-color    : rgba(0, 0, 0, 0);
+	border              : 1px solid rgba(0, 0, 0, 0);
+	border-bottom-color : #eeeeee;
+	padding-top         : 10px;
+	padding-bottom      : 10px;
+}
+.lfe-topic-row:hover {
+	background-color : rgba(238, 238, 238, 0.5);
+}
+.lfe-post-row a,
+.lfe-forum-row a,
+.lfe-topic-row a {
+	text-decoration : none;
+}
+.lfe-post-row {
+	background-color    : rgba(0, 0, 0, 0);
+	border              : 1px solid rgba(0, 0, 0, 0);
+	border-bottom-color : #eeeeee;
+}
+.lfe-post-row:hover {
+	background-color : rgba(238, 238, 238, 0.15);
+}
+.lfe-post-row:after {
+	display : block;
+	content : " ";
+	clear   : both;
+}
+.lfe-header {
+	margin-bottom    : 0;
+	padding-bottom   : 5px;
+	padding-top      : 5px;
+	background-color : #eeeeee;
+	border-bottom    : 1px solid #eeeeee;
+}
+.lfe-post {
+	border     : 1px dashed red;
+	display    : inline-block;
+	width      : calc(100% - 215px);
+	float      : right;
+	min-height : 100px;
+}
+.lfe-post-username {
+	overflow      : hidden !important;
+	text-overflow : ellipsis !important;
+	white-space   : nowrap !important;
+	display       : block !important;
+	margin        : 0 0 0 0;
+	padding       : 0;
+	cursor        : default;
+}
+.lfe-post-avatar {
+	display        : inline-block;
+	vertical-align : top;
+	margin         : 5px 0 5px 0;
+}
+.lfe-post-user {
+	border-right : 1px solid #eeeeee;
+}
+.lfe-post-header {
+	margin-bottom  : 0;
+	padding-bottom : 5px;
+	padding-top    : 5px;
+	border-bottom  : 1px solid #eeeeee;
+	height         : 32px;
+}
+.lfe-breadcrumb {
+	background-color : #ffffff;
+	border-radius    : 4px;
+	list-style       : outside none none;
+	margin-bottom    : 22px;
+	padding          : 8px 15px;
+	border           : 1px solid #dddddd;
+}
+.lfe-breadcrumb > li {
+	display : inline-block;
+}
+.lfe-breadcrumb > li + li::before {
+	color   : #cccccc;
+	content : "/ ";
+	padding : 0 5px;
+}
+.lfe-breadcrumb-stats {
+	background-color : #ffffff;
+	border-radius    : 4px;
+	list-style       : outside none none;
+	margin-bottom    : 22px;
+	padding          : 8px 15px;
+	border           : 1px solid #dddddd;
+}
+.lfe-breadcrumb-stats > li {
+	display : inline-block;
+}
+.lfe-breadcrumb-stats > li:not(:first-child) + li::before {
+	color   : #cccccc;
+	content : "/ ";
+	padding : 0 5px;
+}
+.lfe-breadcrumb-stats > li:first-child + li::before {
+	color   : #cccccc;
+	content : "> ";
+	padding : 0 5px;
+}
+.lfe-help-block {
+	color       : red;
+	font-weight : bold;
+}
+.lfe-bold {
+	font-weight : bold !important;
+}
+ul.pagination {
+	margin : 1px 0 !important;
+}
+.lfe-badge-user {
+	border-radius      : 4px;
+	color              : #333333;
+	display            : inline-block;
+	font-size          : 12px;
+	min-width          : 10px;
+	min-height         : 18px;
+	padding            : 3px 7px;
+	vertical-align     : middle;
+	font-weight        : 500;
+	line-height        : 1;
+	text-align         : center;
+	white-space        : nowrap;
+	cursor             : pointer;
+	-webkit-box-shadow : 0 0 4px rgba(0, 0, 0, 0.33);
+	-moz-box-shadow    : 0 0 4px rgba(0, 0, 0, 0.33);
+	box-shadow         : 0 0 4px rgba(0, 0, 0, 0.33);
+}
+.lfe-badge-admin {
+	border-radius      : 4px;
+	color              : #333333;
+	display            : inline-block;
+	font-size          : 12px;
+	min-width          : 10px;
+	min-height         : 18px;
+	padding            : 3px 7px;
+	vertical-align     : middle;
+	line-height        : 1;
+	text-align         : center;
+	white-space        : nowrap;
+	cursor             : pointer;
+	font-weight        : bold;
+	-webkit-box-shadow : 0 0 4px rgba(0, 0, 0, 0.33);
+	-moz-box-shadow    : 0 0 4px rgba(0, 0, 0, 0.33);
+	box-shadow         : 0 0 4px rgba(0, 0, 0, 0.33);
+}
+.lfe-badge-moderator {
+	border-radius      : 4px;
+	color              : #333333;
+	display            : inline-block;
+	font-size          : 12px;
+	min-width          : 10px;
+	min-height         : 18px;
+	padding            : 3px 7px;
+	vertical-align     : middle;
+	font-weight        : 500;
+	line-height        : 1;
+	text-align         : center;
+	white-space        : nowrap;
+	cursor             : pointer;
+	font-style         : italic;
+	-webkit-box-shadow : 0 0 4px rgba(0, 0, 0, 0.33);
+	-moz-box-shadow    : 0 0 4px rgba(0, 0, 0, 0.33);
+	box-shadow         : 0 0 4px rgba(0, 0, 0, 0.33);
+}
+.lfe-footer {
+	margin-top:15px;
+	margin-bottom:15px;
+	text-align : center;
+	background: radial-gradient(circle at center, #ffffff, #ffffff, transparent);
 }

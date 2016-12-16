@@ -15,18 +15,14 @@ class CreateLfePostsTable extends Migration
 	{
 		Schema::create('lfe_posts', function (Blueprint $table) {
 			$table->bigIncrements('id');
-			$table->bigInteger('topic_id');
-			$table->bigInteger('forum_id')->index();
-			$table->bigInteger('user_id')->index();
+			$table->integer('topic_id')->index();
+			$table->integer('user_id')->index();
 			$table->boolean('is_active')->default(TRUE)->index();
-			$table->text('body');
+			$table->ipAddress('ip')->index();
+			$table->text('message');
 			$table->timestamps();
-
 			$table->index('updated_at');
 			$table->index('created_at');
-			$table->index(['topic_id','id']);
-
-			$table->foreign('forum_id')->references('id')->on( 'lfe_forums' )->onDelete('cascade');
 			$table->foreign('topic_id')->references('id')->on( 'lfe_topics' )->onDelete('cascade');
 		});
 	}

@@ -2,14 +2,18 @@
 namespace Hzone\LFE;
 
 use Hzone\LFE\Commands\LFEInstallCommand;
+use Hzone\LFE\Commands\LFEPurgeCommand;
 use Hzone\LFE\Middleware\LFEMiddleware;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class LFEServiceProvider
+ * @package Hzone\LFE
+ */
 class LFEServiceProvider extends ServiceProvider
 {
-	private $routeNamespace = 'Hzone\\LFE\\Controllers';
 
 	/**
 	 * Bootstrap the application services.
@@ -18,11 +22,12 @@ class LFEServiceProvider extends ServiceProvider
 	 */
 	public function boot( Router $router )
 	{
+		$this->loadTranslationsFrom( realpath( __DIR__ . '/../resources/lang' ), 'LFE' );
+		$this->loadViewsFrom( realpath( __DIR__ . '/../resources/views/LFE' ), 'LFE' );
 		$router->middleware( 'LFE.user', LFEMiddleware::class );
-		$this->loadViewsFrom( __DIR__ . '../../resources/views', 'LFE' );
 		$router->group( [
 			'prefix'    => config( 'LFE.routes.prefix', 'forums' ),
-			'namespace' => $this->routeNamespace,
+			'namespace' => 'Hzone\\LFE\\Controllers',
 		], function ()
 		{
 			if ( !$this->app->routesAreCached() )
@@ -39,20 +44,15 @@ class LFEServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
+		$this->mergeConfigFrom( __DIR__ . '/../config/LFE.php', 'LFE' );
 		$this->registerResources();
-		$this->app->booting( function ()
+		$this->registerCommands();
+		$this->registerAliases();
+/*		$this->app[ 'LFE' ] = $this->app->share( function ( $app )
 		{
-			$loader = AliasLoader::getInstance();
-			$loader->alias( 'Satellite', Satellite::class );
-			$loader->alias( 'Forum', Model\Forum::class );
-			$loader->alias( 'Topic', Model\Topic::class );
-			$loader->alias( 'Post', Model\Post::class );
+			return new LFEInstallCommand();
 		} );
-		$this->app[ 'command.LFE' ] = $this->app->share( function ( $app )
-		{
-			return new LFEInstallCommand;
-		} );
-		$this->commands( 'command.LFE' );
+		$this->commands( 'LFE' );*/
 	}
 
 	/**
@@ -61,7 +61,7 @@ class LFEServiceProvider extends ServiceProvider
 	protected function registerResources()
 	{
 		$this->publishes( [
-			__DIR__ . '/../public' => public_path( 'vendor/LFE' ),
+			__DIR__ . '/../public/LFE' => public_path( 'vendor/LFE' ),
 		], 'assets' );
 		// Publish the migrations to the migrations folder
 		$this->publishes( [
@@ -84,5 +84,45 @@ class LFEServiceProvider extends ServiceProvider
 			__DIR__ . '/../resources/lang/' => resource_path( 'lang' ),
 		], 'lang' );
 	}
-}
 
+	/**
+	 * @return void
+	 */
+	protected function registerCommands()
+	{
+		$this->commands( [
+			LFEInstallCommand::class,
+			LFEPurgeCommand::class,
+		] );
+	}
+
+	/**
+	 * @return void
+	 */
+	protected function registerAliases()
+	{
+		$this->app->booting( function ()
+		{
+			$loader = AliasLoader::getInstance();
+			$loader->alias( 'Satellite', Satellite::class );
+			$loader->alias( 'WhoOnline', Model\WhoOnline::class );
+			$loader->alias( 'LFESession', Model\LFESession::class );
+			$loader->alias( 'FAggr', Model\FAggr::class );
+			$loader->alias( 'Forum', Model\Forum::class );
+			$loader->alias( 'Topic', Model\Topic::class );
+			$loader->alias( 'Post', Model\Post::class );
+		} );
+	}
+
+	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+/*
+	public function provides()
+	{
+		return [ 'LFE' ];
+	}
+*/
+}
