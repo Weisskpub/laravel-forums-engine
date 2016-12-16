@@ -76,4 +76,4 @@ Doctrine/dbal https://github.com/doctrine/dbal
 
 ## Limitations
 - "Who is online" works ONLY with database drive of sessions
-- LFE works ONLY with default 'Auth' Facade
+- LFE works ONLY with default Laravel Auth mechanism 'from the box'.
