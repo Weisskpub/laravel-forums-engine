@@ -13,9 +13,9 @@ composer require "golonka/bbcodeparser":"*"
 
 ```
 see
-https://github.com/h-zone/laravel-backup-commands
-https://github.com/h-zone/laravel-tinymce
-https://github.com/golonka/bbcodeparser
+- https://github.com/h-zone/laravel-backup-commands
+- https://github.com/h-zone/laravel-tinymce
+- https://github.com/golonka/bbcodeparser
 
 **You should to install and setup this packages manually before continue!**
 
