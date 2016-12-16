@@ -17,13 +17,9 @@
         }
     },
     "require": {
-        "h-zone/laravel-backup-commands": "dev-master",
-        "h-zone/laravel-tinymce": "dev-master",
         "golonka/bbcodeparser": "^2.2.2"
     },
     "require-dev": {
-        "h-zone/laravel-backup-commands": "dev-master",
-        "h-zone/laravel-tinymce": "dev-master",
         "golonka/bbcodeparser": "^2.2.2"
     },
     "autoload": {
