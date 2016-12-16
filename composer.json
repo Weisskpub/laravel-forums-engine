@@ -17,19 +17,11 @@
         }
     },
     "require": {
-        "php":">=5.6.4",
-        "illuminate/support": "5.3.*",
-        "intervention/image": "^2.3",
-        "doctrine/dbal": "^2.5",
         "h-zone/laravel-backup-commands": "dev-master",
         "h-zone/laravel-tinymce": "dev-master",
         "golonka/bbcodeparser": "^2.2.2"
     },
     "require-dev": {
-        "php":">=5.6.4",
-        "illuminate/support": "5.3.*",
-        "intervention/image": "^2.3",
-        "doctrine/dbal": "^2.5",
         "h-zone/laravel-backup-commands": "dev-master",
         "h-zone/laravel-tinymce": "dev-master",
         "golonka/bbcodeparser": "^2.2.2"
