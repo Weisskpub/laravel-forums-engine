@@ -33,14 +33,6 @@ config/app.php
     //....
 ],
 ```
-```
-'aliases' => [
-    //....
-    'BBCode'       => \Hzone\LFE\Facades\BBCode::class,
-    'Satellite'    => \Hzone\LFE\Facades\Satellite::class,
-    //....
-],
-```
 
 Publishing
 ```
