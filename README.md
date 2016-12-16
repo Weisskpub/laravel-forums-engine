@@ -7,15 +7,17 @@ Forums engine for Your Laravel Framework
 
 ### Before installation
 ```
-composer require "h-zone/laravel-backup-commands": "dev-master",
-composer require "h-zone/laravel-tinymce": "dev-master",
+composer require "h-zone/laravel-backup-commands": "dev-master"
+composer require "h-zone/laravel-tinymce": "dev-master"
+composer require "golonka/bbcodeparser":"*"
 
 ```
 see
 https://github.com/h-zone/laravel-backup-commands
 https://github.com/h-zone/laravel-tinymce
+https://github.com/golonka/bbcodeparser
 
-You should to install and setup this packages manually!
+**You should to install and setup this packages manually before continue!**
 
 
 ## Intallation
