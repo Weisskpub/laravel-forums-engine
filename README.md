@@ -20,7 +20,7 @@ You should to install and setup this packages manually!
 
 ## Intallation
 ```
-composer require "h-zone/laravel-forums-engine":"^0.1-dev"
+composer require "h-zone/laravel-forums-engine":"dev-master"
 ```
 
 config/app.php
