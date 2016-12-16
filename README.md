@@ -3,7 +3,20 @@ Forums engine for Your Laravel Framework
 
 ## Attention !
 - Support for now Laravel 5.3 only, another versions is not tested!
-- Current version - Development, not alpha/beta/gamma....
+- Current version - Development, not alpha/beta/gamma.... May be bugs.
+
+### Before installation
+```
+composer require "h-zone/laravel-backup-commands": "dev-master",
+composer require "h-zone/laravel-tinymce": "dev-master",
+
+```
+see
+https://github.com/h-zone/laravel-backup-commands
+https://github.com/h-zone/laravel-tinymce
+
+You should to install and setup this packages manually!
+
 
 ## Intallation
 ```
