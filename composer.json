@@ -21,8 +21,8 @@
         "illuminate/support": "5.3.*",
         "intervention/image": "^2.3",
         "doctrine/dbal": "^2.5",
-		"h-zone/laravel-backup-commands": "^0.1-dev",
-		"h-zone/laravel-tinymce": "^0.1-dev",
+        "h-zone/laravel-backup-commands": "^0.1-dev",
+        "h-zone/laravel-tinymce": "^0.1-dev",
         "golonka/bbcodeparser": "^2.2.2"
     },
     "autoload": {
