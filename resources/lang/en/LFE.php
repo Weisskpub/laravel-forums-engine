@@ -56,4 +56,23 @@ return [
 		/*DO NOT REMOVE!*/
 		'1' => '1',
 	],
+	'validator' => [
+		'title'    => [
+			'required' => 'Topic title is required',
+			'min'      => 'Minimum length of the topic title is 4 symbols',
+			'max'      => 'Maximum length of the topic title is 160 symbols',
+		],
+		'message'  => [
+			'required' => 'Message is required',
+			'min'      => 'Minimum length of the topic message is 4 symbols',
+		],
+		'forum_id' => [
+			'required' => 'Forum ID is not provided',
+			'numeric'  => 'Forum ID must be a numeric',
+		],
+		'topic_id' => [
+			'required' => 'Topic ID is not provided',
+			'numeric'  => 'Topic ID must be a numeric',
+		],
+	],
 ];

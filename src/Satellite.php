@@ -122,20 +122,40 @@ class Satellite
 
 	/**
 	 * @param int $forum_id
+	 * @param $method
 	 * @return \Illuminate\Contracts\Routing\UrlGenerator|string
 	 */
-	public static function makeNewTopicUrl( $forum_id )
+	public static function makeNewTopicUrl( $forum_id, $method='get' )
 	{
-		return url( config( 'LFE.routes.prefix' ) . '/f-' . $forum_id . '/new-topic' );
+		switch($method)
+		{
+			default:
+			case 'get':
+				return url( config( 'LFE.routes.prefix' ) . '/f-' . $forum_id . '/new-topic' );
+			break;
+			case 'post':
+				return url( config( 'LFE.routes.prefix' ) . '/new-topic' );
+			break;
+		}
 	}
 
 	/**
 	 * @param $topic_id
+	 * @param $method
 	 * @return \Illuminate\Contracts\Routing\UrlGenerator|string
 	 */
-	public static function makeReplyUrl( $topic_id )
+	public static function makeReplyUrl( $topic_id, $method='get' )
 	{
-		return url( config( 'LFE.routes.prefix' ) . '/t-' . $topic_id . '/reply' );
+		switch($method)
+		{
+			default:
+			case 'get':
+				return url( config( 'LFE.routes.prefix' ) . '/t-' . $topic_id . '/reply' );
+			break;
+			case 'post':
+				return url( config( 'LFE.routes.prefix' ) . '/reply' );
+			break;
+		}
 	}
 
 	/**

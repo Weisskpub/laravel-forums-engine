@@ -1,5 +1,6 @@
-<form name="newtopic" method="post" action="{{Satellite::makeNewTopicUrl($Forum->id)}}">
+<form name="newtopic" method="post" action="{{Satellite::makeNewTopicUrl($Forum->id, 'post')}}">
 	{{csrf_field()}}
+	<input type="hidden" name="forum_id" value="{{$Forum->id}}" />
 	<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
 		<label for="title" class="control-label">{{trans('LFE::LFE.new-topic-title-title')}}</label>
 		<input id="title" type="text" name="title" class="form-control" value="{{old('title')}}"

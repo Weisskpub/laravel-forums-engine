@@ -8,6 +8,7 @@ use Hzone\LFE\Satellite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Hzone\LFE\Request\ValidateReply;
 
 /**
  * Class PostController
@@ -15,15 +16,6 @@ use Illuminate\Support\Facades\Validator;
  */
 class PostController extends Controller
 {
-	/**
-	 * TopicController constructor.
-	 * @param Request $request
-	 */
-	public function __construct( Request $request )
-	{
-		$this->request = $request;
-	}
-
 	/**
 	 * @param $post_id
 	 * @return \Illuminate\View\View
@@ -78,28 +70,12 @@ class PostController extends Controller
 		}
 	}
 
-	public function postReply( $topic_id )
+	public function postReply( ValidateReply $request )
 	{
-		$message   = $this->request->get( 'message' );
-		$Validator = Validator::make( [
-			'message'  => $message,
-			'topic_id' => $topic_id,
-		], [
-			'message'  => 'required|min:2',
-			'topic_id' => 'required|integer',
-		] );
-		if ( $Validator->fails() )
-		{
-			$this->request->flash();
-
-			return redirect()
-				->back()
-				->withErrors( $Validator->errors() )
-				;
-		}
-		//....
 		if ( Auth::check() )
 		{
+			$message   = $request->get( 'message' );
+			$topic_id  = $request->get( 'topic_id' );
 			if ( !empty( $topic_id ) )
 			{
 				$Topic = Topic::find( $topic_id );
@@ -110,7 +86,7 @@ class PostController extends Controller
 							'user_id'   => Auth::user()->id,
 							'is_active' => true,
 							'message'   => $message,
-							'ip'        => $this->request->ip(),
+							'ip'        => $request->ip(),
 							'forum_id'  => $Topic->forum_id,
 						] )
 					;

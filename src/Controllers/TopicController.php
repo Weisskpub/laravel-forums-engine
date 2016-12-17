@@ -8,6 +8,7 @@ use Hzone\LFE\Satellite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Hzone\LFE\Request\ValidateNewTopic;
 
 /**
  * Class TopicController
@@ -15,17 +16,6 @@ use Illuminate\Support\Facades\Validator;
  */
 class TopicController extends Controller
 {
-	protected $request = null;
-	protected $auth    = null;
-
-	/**
-	 * TopicController constructor.
-	 * @param Request $request
-	 */
-	public function __construct( Request $request )
-	{
-		$this->request = $request;
-	}
 
 	/**
 	 * @param $forum_id
@@ -62,31 +52,13 @@ class TopicController extends Controller
 	 * @param $forum_id
 	 * @return mixed
 	 */
-	public function postNew( $forum_id )
+	public function postNew( ValidateNewTopic $request )
 	{
-		$title     = $this->request->get( 'title' );
-		$message   = $this->request->get( 'message' );
-		$Validator = Validator::make( [
-			'title'    => $title,
-			'message'  => $message,
-			'forum_id' => $forum_id,
-		], [
-			'title'    => 'required|min:4|max:160',
-			'message'  => 'required|min:2',
-			'forum_id' => 'required|integer',
-		] );
-		if ( $Validator->fails() )
-		{
-			$this->request->flash();
-
-			return redirect()
-				->back()
-				->withErrors( $Validator->errors() )
-				;
-		}
-		//....
 		if ( Auth::check() )
 		{
+			$forum_id  = $request->get( 'forum_id' );
+			$title     = $request->get( 'title' );
+			$message   = $request->get( 'message' );
 			if ( !empty( $forum_id ) )
 			{
 				$Forum = Forum::find( $forum_id );
@@ -104,7 +76,7 @@ class TopicController extends Controller
 							'user_id'   => Auth::user()->id,
 							'is_active' => true,
 							'message'   => $message,
-							'ip'        => $this->request->ip(),
+							'ip'        => $request->ip(),
 							'forum_id'  => $forum_id,
 						] )
 					;
