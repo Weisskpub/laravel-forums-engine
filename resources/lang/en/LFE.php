@@ -75,4 +75,5 @@ return [
 			'numeric'  => 'Topic ID must be a numeric',
 		],
 	],
+	'users-title' => 'Users',
 ];

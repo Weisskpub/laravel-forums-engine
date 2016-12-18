@@ -2,13 +2,10 @@
 namespace Hzone\LFE\Controllers;
 
 use App\Http\Controllers\Controller;
+use Hzone\LFE\Request\ValidateReply;
 use Hzone\LFE\Model\Post;
 use Hzone\LFE\Model\Topic;
 use Hzone\LFE\Satellite;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Hzone\LFE\Request\ValidateReply;
 
 /**
  * Class PostController
@@ -45,7 +42,7 @@ class PostController extends Controller
 	 */
 	public function getReply( $topic_id )
 	{
-		if ( Auth::check() )
+		if ( auth()->check() )
 		{
 			if ( !empty( $topic_id ) )
 			{
@@ -72,7 +69,7 @@ class PostController extends Controller
 
 	public function postReply( ValidateReply $request )
 	{
-		if ( Auth::check() )
+		if ( auth()->check() )
 		{
 			$message   = $request->get( 'message' );
 			$topic_id  = $request->get( 'topic_id' );
@@ -83,10 +80,10 @@ class PostController extends Controller
 				{
 					$Post = $Topic->posts()
 						->create( [
-							'user_id'   => Auth::user()->id,
+							'user_id'   => auth()->user()->id,
 							'is_active' => true,
 							'message'   => $message,
-							'ip'        => $request->ip(),
+							'ip'        => Satellite::ip(),
 							'forum_id'  => $Topic->forum_id,
 						] )
 					;

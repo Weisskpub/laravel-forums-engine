@@ -17,7 +17,6 @@ class LFEServiceProvider extends ServiceProvider
 
 	/**
 	 * Bootstrap the application services.
-	 *
 	 * @param Router $router
 	 */
 	public function boot( Router $router )
@@ -39,20 +38,19 @@ class LFEServiceProvider extends ServiceProvider
 
 	/**
 	 * Register the application services.
-	 *
 	 * @return void
 	 */
 	public function register()
 	{
 		$this->mergeConfigFrom( __DIR__ . '/../config/LFE.php', 'LFE' );
+		// enable https in asset() and url() generators
+		if ( config( 'LFE.https' ) == true )
+		{
+			url()->forceSchema('https');
+		}
 		$this->registerResources();
 		$this->registerCommands();
 		$this->registerAliases();
-/*		$this->app[ 'LFE' ] = $this->app->share( function ( $app )
-		{
-			return new LFEInstallCommand();
-		} );
-		$this->commands( 'LFE' );*/
 	}
 
 	/**
@@ -60,25 +58,32 @@ class LFEServiceProvider extends ServiceProvider
 	 */
 	protected function registerResources()
 	{
+
+		// Publish assets
 		$this->publishes( [
 			__DIR__ . '/../public/LFE' => public_path( 'vendor/LFE' ),
 		], 'assets' );
+
 		// Publish the migrations to the migrations folder
 		$this->publishes( [
 			__DIR__ . '/../database/migrations/' => database_path( 'migrations' ),
 		], 'migrations' );
+
 		// Publish the seeds to the seeds folder
 		$this->publishes( [
 			__DIR__ . '/../database/seeds/' => database_path( 'seeds' ),
 		], 'seeds' );
+
 		// Publish the content/uploads content to the migrations folder
 		$this->publishes( [
 			__DIR__ . '/../config/LFE.php' => config_path( 'LFE.php' ),
 		], 'config' );
+
 		// Publish the post view
 		$this->publishes( [
 			__DIR__ . '/../resources/views/' => resource_path( 'views' ),
 		], 'views' );
+
 		// Publish the localizations
 		$this->publishes( [
 			__DIR__ . '/../resources/lang/' => resource_path( 'lang' ),
@@ -114,15 +119,4 @@ class LFEServiceProvider extends ServiceProvider
 		} );
 	}
 
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-/*
-	public function provides()
-	{
-		return [ 'LFE' ];
-	}
-*/
 }

@@ -1,6 +1,10 @@
 <?php
 return [
 	/**
+	 * Use HTPPS only (adopts URLs to force using https://
+	 */
+	'https' => true,
+	/**
 	 * Version
 	 */
 	'version'                => '0.2',

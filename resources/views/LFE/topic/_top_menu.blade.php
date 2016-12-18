@@ -1,10 +1,13 @@
 <div class="row" style="margin-bottom:20px;">
 	<div class="col-xs-6 text-left">
-		{{$Posts->links()}}
+		@include('LFE::top_menu_global')
 	</div>
 	<div class="col-xs-6 text-right">
-		@if( Auth::check() && ( Auth::user()->isForumsAdmin() || Auth::user()->isForumsModerator($Topic->forum->id) ) )
-			<div class="dropdown pull-right">
+		@if(auth()->check() || config('LFE::allow_guests_reply'))
+			<a href="{{\Hzone\LFE\Satellite::makeReplyUrl($Topic->id)}}" class="btn btn-primary">{{trans('LFE::LFE.reply-title')}}</a>
+		@endif
+		@if( auth()->check() && ( auth()->user()->isForumsAdmin($Topic->forum->id) || auth()->user()->isForumsModerator($Topic->forum->id) ) )
+			<div class="dropdown" style="display:inline-block">
 				<button class="btn btn-danger dropdown-toggle" type="button" id="topic-moderator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{{trans('LFE::LFE.stats-legend-moderator')}}
 					<span class="caret"></span>
@@ -42,10 +45,6 @@
 					</li>
 				</ul>
 			</div>
-		@endif
-		<span class="hide-xs pull-right">&nbsp;</span>
-		@if(Auth::check() || config('LFE::allow_guests_reply'))
-			<a href="{{\Hzone\LFE\Satellite::makeReplyUrl($Topic->id)}}" class="btn btn-primary pull-right">{{trans('LFE::LFE.reply-title')}}</a>
 		@endif
 	</div>
 </div>

@@ -7,6 +7,11 @@ use Hzone\LFE\Model\Post;
 use Hzone\LFE\Model\Topic;
 use Illuminate\Support\Debug\Dumper;
 
+/**
+ * Class Satellite
+ * Just helpers
+ * @package Hzone\LFE
+ */
 class Satellite
 {
 	/**
@@ -36,7 +41,6 @@ class Satellite
 	{
 		$url = url( config( 'LFE.routes.prefix' ) . '/p-' . $Post->id );
 		$url .= '#post-'.$Post->id;
-
 		return $url;
 	}
 
@@ -184,4 +188,20 @@ class Satellite
 	{
 		return url( config( 'LFE.routes.prefix' ) . '/t-' . $topic_id . '/unhide' );
 	}
+
+	/**
+	 * @return string
+	 */
+	public static function ip()
+	{
+		if ( !empty( request()->server( 'HTTP_X_FORWARDED_FOR' ) ) )
+		{
+			return request()->server( 'HTTP_X_FORWARDED_FOR' );
+		}
+		else
+		{
+			return request()->ip();
+		}
+	}
+
 }

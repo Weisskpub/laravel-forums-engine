@@ -2,13 +2,10 @@
 namespace Hzone\LFE\Controllers;
 
 use App\Http\Controllers\Controller;
+use Hzone\LFE\Request\ValidateNewTopic;
 use Hzone\LFE\Model\Forum;
 use Hzone\LFE\Model\Topic;
 use Hzone\LFE\Satellite;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Hzone\LFE\Request\ValidateNewTopic;
 
 /**
  * Class TopicController
@@ -23,7 +20,7 @@ class TopicController extends Controller
 	 */
 	public function getNew( $forum_id )
 	{
-		if ( Auth::check() )
+		if ( auth()->check() )
 		{
 			if ( !empty( $forum_id ) )
 			{
@@ -54,7 +51,7 @@ class TopicController extends Controller
 	 */
 	public function postNew( ValidateNewTopic $request )
 	{
-		if ( Auth::check() )
+		if ( auth()->check() )
 		{
 			$forum_id  = $request->get( 'forum_id' );
 			$title     = $request->get( 'title' );
@@ -66,17 +63,17 @@ class TopicController extends Controller
 				{
 					$Topic = $Forum->topics()
 						->create( [
-							'user_id'   => Auth::user()->id,
+							'user_id'   => auth()->user()->id,
 							'is_active' => true,
 							'title'     => $title,
 						] )
 					;
 					$Post  = $Topic->posts()
 						->create( [
-							'user_id'   => Auth::user()->id,
+							'user_id'   => auth()->user()->id,
 							'is_active' => true,
 							'message'   => $message,
-							'ip'        => $request->ip(),
+							'ip'        => Satellite::ip(),
 							'forum_id'  => $forum_id,
 						] )
 					;
@@ -112,16 +109,21 @@ class TopicController extends Controller
 	public function getDelete( $topic_id )
 	{
 		$return = [ 'success' => false ];
-		if ( Auth::check() )
+		// Expecting json. Real Page is not present
+		if ( request()->expectsJson() == false )
+		{
+			return abort(404);
+		}
+		if ( auth()->check() )
 		{
 			$Topic = Topic::find( $topic_id );
 			if ( !empty( $Topic ) )
 			{
-				if ( $Topic->user_id == Auth::user()->id
-					 || Auth::user()
-						 ->isForumsModerator()
-					 || Auth::user()
-						 ->isForumsAdmin()
+				if ( $Topic->user_id == auth()->user()->id
+					 || auth()->user()
+						 ->isForumsModerator( $Topic->forum_id )
+					 || auth()->user()
+						 ->isForumsAdmin( $Topic->forum_id )
 				)
 				{
 					$return[ 'success' ] = true;
@@ -160,7 +162,7 @@ class TopicController extends Controller
 	 */
 	public function postDelete( $topic_id )
 	{
-		if ( Auth::check() )
+		if ( auth()->check() )
 		{
 			$Topic = Topic::with( 'forum' )
 				->with( 'user' )
@@ -169,11 +171,11 @@ class TopicController extends Controller
 			$Forum = $Topic->forum;
 			if ( !empty( $Topic ) )
 			{
-				if ( $Topic->user_id == Auth::user()->id
-					 || Auth::user()
-						 ->isForumsModerator()
-					 || Auth::user()
-						 ->isForumsAdmin()
+				if ( $Topic->user_id == auth()->user()->id
+					 || auth()->user()
+						 ->isForumsModerator( $Topic->forum_id )
+					 || auth()->user()
+						 ->isForumsAdmin( $Topic->forum_id )
 				)
 				{
 					$Topic->delete();

@@ -14,7 +14,7 @@
 </div>
 @include('LFE::topic._fast_reply')
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-xs-12 text-right">
 		{{$Posts->links()}}
 	</div>
 </div>

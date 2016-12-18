@@ -34,19 +34,7 @@ class Topic extends Model
 	protected static function boot( )
 	{
 		parent::boot();
-		if ( Auth::check()
-			 && ( Auth::user()
-					  ->isForumsAdmin()
-				  || Auth::user()
-					  ->isForumsAdmin() )
-		)
-		{
-			static::addGlobalScope( new AllScope );
-		}
-		else
-		{
-			static::addGlobalScope( new ActiveScope );
-		}
+		static::addGlobalScope( new ActiveScope );
 		static::deleting( function ( $Model )
 		{
 			$Model->deletingTopic( $Model );
