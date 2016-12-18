@@ -14,7 +14,7 @@ class AlterLfePostsTable extends Migration
 	public function up()
 	{
 		Schema::table('lfe_posts', function (Blueprint $table) {
-			$table->integer('forum_id')->index();
+			$table->integer('forum_id')->default(0)->index();
 		});
 	}
 
