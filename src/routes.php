@@ -24,6 +24,11 @@ Route::group( [ 'middleware' => [ 'web' ] ], function ()
 	Route::get( '/t-{tid}', 'IndexController@getTopic' );
 	// Post to Topic/page/anchor Redirector
 	Route::get( '/p-{pid}', 'PostController@getPost' );
+	// Users page
+	Route::get( '/users', 'UserController@getIndex' );
+	// User page
+	Route::get( '/u-{uid}-{SEOuserName}', 'UserController@getUser' );
+	Route::get( '/u-{uid}', 'UserController@getUser' );
 
 	// New topic page
 	Route::get( '/f-{fid}/new-topic', 'TopicController@getNew' );

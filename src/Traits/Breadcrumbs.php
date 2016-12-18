@@ -24,21 +24,34 @@ trait Breadcrumbs
 				if ( $this->parent_id == 0 )
 				{
 					$return[] = $this->bctpl( $base_url, trans( 'LFE::LFE.name' ) );
-					$return[] = $this->bctpl( Satellite::makeForumUrl( $this ), $this->title, true );
+					$return[] = $this->bctpl( null, $this->title );
 				}
 				else
 				{
 					$return[] = $this->bctpl( $base_url, trans( 'LFE::LFE.name' ) );
 					$return = $this->recursivelyPassForumsUp( $this->parent_id, $return );
-					$return[] = $this->bctpl( Satellite::makeForumUrl( $this ), $this->title, true );
+					$return[] = $this->bctpl( null, $this->title );
 				}
 				break;
 			case 'Hzone\LFE\Model\Topic':
 				$return[] = $this->bctpl( $base_url, trans( 'LFE::LFE.name' ) );
 				$return = $this->recursivelyPassForumsUp( $this->forum_id, $return );
-				$return[] = $this->bctpl( Satellite::makeTopicUrl( $this ), $this->title, true );
+				$return[] = $this->bctpl( null, $this->title );
 				break;
 			case 'Hzone\LFE\Model\Post':
+				break;
+			case 'App\User':
+				$return[] = $this->bctpl( $base_url, trans( 'LFE::LFE.name' ) );
+				if ( !empty( $this->{$this->getKeyName()} ) && $this->exists() == true )
+				{
+					// i know about $this->getKey() = real id num
+					$return[] = $this->bctpl( url( config( 'LFE.routes.prefix' ) . '/users' ), trans( 'LFE::LFE.users-title' ) );
+					$return[] = $this->bctpl( null, $this->{config( 'LFE.username_column' )} );
+				}
+				else
+				{
+					$return[] = $this->bctpl( null, trans( 'LFE::LFE.users-title' ) );
+				}
 				break;
 		}
 
@@ -74,20 +87,10 @@ trait Breadcrumbs
 	/**
 	 * @param string $url
 	 * @param string $title
-	 * @param bool $is_active
 	 * @return string
 	 */
-	protected function bctpl( $url = null, $title = null, $is_active = false )
+	protected function bctpl( $url = null, $title = null )
 	{
-		switch ( $is_active )
-		{
-			case false:
-			default:
-				return '<li><a href="' . $url . '">' . $title . '</a></li>';
-				break;
-			case true:
-				return '<li class="active">' . $title . '</li>';
-				break;
-		}
+		return view( 'LFE::._breadcrumb', [ 'url' => $url, 'title' => $title ] );
 	}
 }

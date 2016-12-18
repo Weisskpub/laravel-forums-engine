@@ -54,7 +54,7 @@ class Satellite
 		{
 			$name = self::seoAddress( $User->{config( 'LFE.username_column' )} );
 
-			return url( config( 'LFE.routes.prefix' ) . '/user/' . $User->id . '-' . $name );
+			return url( config( 'LFE.routes.prefix' ) . '/u-' . $User->id . '-' . $name );
 		}
 		else
 		{
