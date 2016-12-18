@@ -61,11 +61,13 @@ and add LFEAuthUser Trait
 namespace App;
 //....
 use Hzone\LFE\Traits\LFEAuthUser;
+use Hzone\LFE\Traits\Breadcrumbs;
 //....
 class User extend Model
 {
     //....
     use LFEAuthUser;
+    use Breadcrumbs;
     //....
 }
 ```
