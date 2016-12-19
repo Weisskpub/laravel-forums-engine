@@ -12,7 +12,7 @@ php artisan make:auth
 
 Supporting Who is Online feature by using the database driver of laravel sessions
 ```
-php artisan sessions:table
+php artisan session:table
 php artisan migrate
 ```
 and configure the session in `/env` and `/config/sessions.php`
