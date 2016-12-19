@@ -11,7 +11,7 @@
 		</span>
 		@endif
 	</div>
-	@include('tinymce::editor', [ 'tinymce' => [ 'textarea_required' => true, 'haserror' =>  true, 'haserror_css' => true, 'in_form_group' =>  true, 'form_horisontal' => false, 'label' =>  true, 'label_text' => trans('LFE::LFE.new-topic-post-title'), 'label_css' => 'control-label', 'label_id' => 'postmessage', 'textarea_name' => 'message', 'textarea_css' => 'form-control' ] ])
+	@include('LFE::topic._editor', [ 'showLabel' => true ])
 	<div class="form-group">
 		<div class="text-right">
 			<button type="button" class="btn btn-default" onclick="history.go(-1)">{{trans('LFE::LFE.cancel')}}</button>

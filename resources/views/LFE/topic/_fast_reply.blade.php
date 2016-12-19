@@ -14,15 +14,7 @@
 				<form name="newtopic" method="post" action="{{Satellite::makeReplyUrl($Topic->id)}}">
 					{{csrf_field()}}
 					<div style="height:15px"></div>
-					@include('tinymce::editor', [ 'tinymce' => [
-						'textarea_required' => true,
-						'haserror' =>  true,
-						'haserror_css' => true,
-						'in_form_group' =>  true,
-						'form_horisontal' => false,
-						'label' =>  false,
-						'textarea_name' => 'message',
-						'textarea_css' => 'form-control' ]])
+					@include('LFE::topic._editor', [ 'showLabel' => true ] )
 					<div class="form-group">
 						<div class="text-right">
 							<button type="button" class="btn btn-default" onclick="history.go(-1)">{{trans('LFE::LFE.cancel')}}</button>
