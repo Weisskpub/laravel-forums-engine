@@ -3,33 +3,29 @@ Forums engine for Your Laravel Framework
 
 ### Before installation
 
-### Setup Laravel
-
-Auth from the Box
+#### Register / login the new users
+For clean laravel installations, we need auth from the box, to able register/login users.
 ```
 php artisan make:auth
 ```
 
-Supporting Who is Online feature by using the database driver of laravel sessions
+#### "Who is Online" feature
 ```
 php artisan session:table
 php artisan migrate
 ```
-and configure the session in `/env` and `/config/sessions.php`
-
-### Install third-party software
-* Backup commands https://github.com/h-zone/laravel-backup-commands
-* TinyMCE Wrapper https://github.com/h-zone/laravel-tinymce
-* BBCode Parcer https://github.com/golonka/bbcodeparser
-* Doctrine/dbal https://github.com/doctrine/dbal
-
-**You should to install and setup this packages manually before continue!**
-Sometime it will be integrated into this package.
+Please configure the session in `/env` and `/config/sessions.php` to use database driver to succesfull read information.
 
 ## Intallation
 ```
 composer require "h-zone/laravel-forums-engine":"dev-master"
 ```
+
+### Dependent software
+Packages will be installed automatically
+* Backup commands https://github.com/h-zone/laravel-backup-commands
+* BBCode Parcer https://github.com/golonka/bbcodeparser
+**You need only setup this packages as described in their instructions**
 
 Adding the Service Provider in config/app.php
 ```
