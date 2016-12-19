@@ -17,10 +17,12 @@
         }
     },
     "require": {
-        "golonka/bbcodeparser": "^2.2.2"
+        "golonka/bbcodeparser": "^2.2.2",
+        "doctrine/dbal": "*"
     },
     "require-dev": {
-        "golonka/bbcodeparser": "^2.2.2"
+        "golonka/bbcodeparser": "^2.2.2",
+        "doctrine/dbal": "*"
     },
     "autoload": {
         "psr-4": {
