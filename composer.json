@@ -20,7 +20,7 @@
         "golonka/bbcodeparser": "^2.2.2",
         "doctrine/dbal": "*",
         "h-zone/laravel-backup-commands": "^0.2",
-        "h-zone/laravel-tinymce": "dev-master"
+        "h-zone/laravel-tinymce": "*"
     },
     "autoload": {
         "psr-4": {
