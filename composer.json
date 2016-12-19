@@ -21,11 +21,6 @@
         "doctrine/dbal": "*",
         "h-zone/laravel-backup-commands": "dev-master"
     },
-    "require-dev": {
-        "golonka/bbcodeparser": "^2.2.2",
-        "doctrine/dbal": "*",
-        "h-zone/laravel-backup-commands": "dev-master"
-    },
     "autoload": {
         "psr-4": {
             "Hzone\\LFE\\": "src/"
