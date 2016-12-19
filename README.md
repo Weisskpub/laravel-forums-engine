@@ -1,31 +1,37 @@
 # LFE - Laravel Forums Engine
 Forums engine for Your Laravel Framework
 
-## Attention !
-- Support for now Laravel 5.3 only, another versions is not tested!
-- Current version - Development, not alpha/beta/gamma.... May be bugs.
-
 ### Before installation
-```
-composer require "h-zone/laravel-backup-commands": "dev-master"
-composer require "h-zone/laravel-tinymce": "dev-master"
-composer require "golonka/bbcodeparser":"*"
 
+### Setup Laravel
+
+Auth from the Box
 ```
-see
-- https://github.com/h-zone/laravel-backup-commands
-- https://github.com/h-zone/laravel-tinymce
-- https://github.com/golonka/bbcodeparser
+php artisan make:auth
+```
+
+Supporting Who is Online feature by using the database driver of laravel sessions
+```
+php artisan sessions:table
+php artisan migrate
+```
+and configure the session in `/env` and `/config/sessions.php`
+
+### Install third-party software
+Backup commands https://github.com/h-zone/laravel-backup-commands
+TinyMCE Wrapper https://github.com/h-zone/laravel-tinymce
+BBCode Parcer https://github.com/golonka/bbcodeparser
+Doctrine/dbal https://github.com/doctrine/dbal
 
 **You should to install and setup this packages manually before continue!**
-
+Sometime it will be integrated into this package.
 
 ## Intallation
 ```
 composer require "h-zone/laravel-forums-engine":"dev-master"
 ```
 
-config/app.php
+Adding the Service Provider in config/app.php
 ```
 'providers' => [
     //....
@@ -52,9 +58,9 @@ resources/view/layouts/app.blade.php
 //....
 ```
 
-Adding User Trait<br />
-Just locate Your User model (i.e. app\User.class)
-and add LFEAuthUser Trait
+Add App\User Traits<br />
+Just locate Your User model (i.e. app\User.php)
+and add Traits
 ```php
 <?php
 //....
@@ -72,10 +78,6 @@ class User extend Model
 }
 ```
 
-## Pre-required
-Backup Commands for Laravel 5.3+ https://github.com/h-zone/laravel-backup-commands
-Doctrine/dbal https://github.com/doctrine/dbal
-
-## Limitations
-- "Who is online" works ONLY with database drive of sessions
+## Limitations at this version
+- "Who is online" works ONLY with database drive of laravel sessions;
 - LFE works ONLY with default Laravel Auth mechanism 'from the box'.
