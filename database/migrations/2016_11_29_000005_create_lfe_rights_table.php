@@ -16,9 +16,9 @@ class CreateLfeRightsTable extends Migration
 		Schema::create('lfe_rights', function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->integer('user_id')->index();
-			$table->integer('forum_id')->index();
-			$table->boolean('is_admin')->default(TRUE)->index();
-			$table->boolean('is_moderator')->default(TRUE)->index();
+			$table->integer('forum_id')->nullable()->index();
+			$table->boolean('is_admin')->default(FALSE)->index();
+			$table->boolean('is_moderator')->default(FALSE)->index();
 			$table->timestamps();
 			$table->index('updated_at');
 			$table->index('created_at');
