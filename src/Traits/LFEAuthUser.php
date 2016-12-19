@@ -9,6 +9,15 @@ use Hzone\LFE\Model\Rights;
  */
 trait LFEAuthUser
 {
+
+	/**
+	 * @return
+	 */
+	public function rights()
+	{
+		return $this->hasMany( Rights::class );
+	}
+
 	/**
 	 * @param integer $forum_id
 	 * @return boolean

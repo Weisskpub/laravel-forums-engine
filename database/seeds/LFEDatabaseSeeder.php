@@ -151,5 +151,15 @@ And more at https://github.com/golonka/bbcodeparser !
 				'message'   => 'test',
 			]);
 
+		$Rights1 = $User1->rights()->create([
+			'is_admin'     => true,
+			'is_moderator' => false,
+		]);
+
+		$Rights2 = $User2->rights()->create([
+			'is_admin'     => false,
+			'is_moderator' => true,
+		]);
+
 	}
 }

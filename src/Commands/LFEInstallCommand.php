@@ -103,24 +103,6 @@ class LFEInstallCommand extends Command
 			return;
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		$this->info( '################################################################################' );
-		$this->info( "# Trying to Install h-zone/laravel-tinymce" );
-		$this->info( '################################################################################' );
-		try
-		{
-			$this->line( '' );
-			Artisan::call( 'tinymce:install', [ '--verbose' => true ] );
-			$this->line( Artisan::output() );
-			$this->line( 'CHECK config/tinymce.php !' );
-		}
-		catch ( Exception $e )
-		{
-			$this->error( '"tinymce:install" Error !' );
-			$this->error( $e->getMessage() );
-			$this->line( Artisan::output() );
-			return;
-		}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if ( $this->option( 'purge' ) )
 		{
 			$this->info( '################################################################################' );
