@@ -18,10 +18,10 @@ php artisan migrate
 and configure the session in `/env` and `/config/sessions.php`
 
 ### Install third-party software
-Backup commands https://github.com/h-zone/laravel-backup-commands
-TinyMCE Wrapper https://github.com/h-zone/laravel-tinymce
-BBCode Parcer https://github.com/golonka/bbcodeparser
-Doctrine/dbal https://github.com/doctrine/dbal
+* Backup commands https://github.com/h-zone/laravel-backup-commands
+* TinyMCE Wrapper https://github.com/h-zone/laravel-tinymce
+* BBCode Parcer https://github.com/golonka/bbcodeparser
+* Doctrine/dbal https://github.com/doctrine/dbal
 
 **You should to install and setup this packages manually before continue!**
 Sometime it will be integrated into this package.
@@ -59,7 +59,7 @@ resources/view/layouts/app.blade.php
 ```
 
 Add App\User Traits<br />
-Just locate Your User model (i.e. app\User.php)
+Just locate Your User model (i.e. app\User.php)<br />
 and add Traits
 ```php
 <?php
