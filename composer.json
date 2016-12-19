@@ -19,8 +19,7 @@
     "require": {
         "golonka/bbcodeparser": "^2.2.2",
         "doctrine/dbal": "*",
-        "h-zone/laravel-backup-commands": "^0.2",
-        "h-zone/laravel-tinymce": "*"
+        "h-zone/laravel-backup-commands": "^0.2"
     },
     "autoload": {
         "psr-4": {
