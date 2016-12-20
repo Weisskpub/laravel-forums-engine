@@ -88,6 +88,7 @@ class LFEDatabaseSeeder extends Seeder
 		]);
 			$Post = $Topic1->posts()->create([
 				'user_id'   => $User1->id,
+				'forum_id'  => $RootForum1->id,
 				'is_active' => true,
 				'ip'        => '123.45.67.89',
 				'message'   => '
@@ -112,6 +113,7 @@ And more at https://github.com/golonka/bbcodeparser !
 			'title'     => 'Just for test 0001',
 		]);
 			$Post = $Topic2->posts()->create([
+				'forum_id'  => $RootForum1->id,
 				'user_id'   => $User1->id,
 				'is_active' => true,
 				'ip'        => '123.45.67.89',
@@ -123,6 +125,7 @@ And more at https://github.com/golonka/bbcodeparser !
 			'title'     => 'Just for test 0002',
 		]);
 			$Post = $Topic3->posts()->create([
+				'forum_id'  => $RootForum1->id,
 				'user_id'   => $User2->id,
 				'is_active' => true,
 				'ip'        => '234.56.78.90',
@@ -134,6 +137,7 @@ And more at https://github.com/golonka/bbcodeparser !
 			'title'     => 'Just for test 0003',
 		]);
 			$Post = $Topic4->posts()->create([
+				'forum_id'  => $RootForum1->id,
 				'user_id'   => $User2->id,
 				'is_active' => true,
 				'ip'        => '234.56.78.90',
@@ -145,6 +149,7 @@ And more at https://github.com/golonka/bbcodeparser !
 			'title'     => 'Just for test 0004',
 		]);
 			$Post = $Topic5->posts()->create([
+				'forum_id'  => $SubForum3_1->id,
 				'user_id'   => $User1->id,
 				'is_active' => true,
 				'ip'        => '123.45.67.89',
