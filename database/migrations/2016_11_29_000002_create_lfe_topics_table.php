@@ -17,11 +17,11 @@ class CreateLfeTopicsTable extends Migration
 		{
 			$table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->integer('forum_id')->index();
-			$table->integer('user_id')->index();
+			$table->integer('forum_id')->unsigned()->index();
+			$table->integer('user_id')->unsigned()->index();
 			$table->boolean('is_active')->index();
 			$table->string('title')->index();
-			$table->bigInteger('last_post')->nullable();
+			$table->integer('last_post')->nullable();
 			$table->timestamps();
 			$table->index( 'created_at' );
 			$table->index( 'updated_at' );

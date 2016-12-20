@@ -17,9 +17,9 @@ class CreateLfePostsTable extends Migration
 		{
 			$table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->integer('forum_id')->index();
-			$table->integer('topic_id')->index();
-			$table->integer('user_id')->index();
+			$table->integer('forum_id')->unsigned()->index();
+			$table->integer('topic_id')->unsigned()->index();
+			$table->integer('user_id')->unsigned()->index();
 			$table->boolean('is_active')->default(TRUE)->index();
 			$table->ipAddress('ip')->index();
 			$table->text('message');

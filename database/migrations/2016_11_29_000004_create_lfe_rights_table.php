@@ -17,15 +17,13 @@ class CreateLfeRightsTable extends Migration
 		{
 			$table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->integer('user_id')->index();
-			$table->integer('forum_id')->nullable()->index();
+			$table->integer('user_id')->unsigned()->index();
+			$table->integer('forum_id')->unsigned()->nullable()->index();
 			$table->boolean('is_admin')->default(FALSE)->index();
 			$table->boolean('is_moderator')->default(FALSE)->index();
 			$table->timestamps();
 			$table->index('updated_at');
 			$table->index('created_at');
-			$table->foreign('forum_id')->references('id')->on( 'lfe_forums' )->onDelete('cascade');
-			$table->foreign('user_id')->references('id')->on( 'users' )->onDelete('cascade');
 		});
 	}
 
