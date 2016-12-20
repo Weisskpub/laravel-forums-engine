@@ -32,6 +32,7 @@ Adding the Service Provider in config/app.php
 'providers' => [
     //....
     Hzone\LFE\LFEServiceProvider::class,
+    Hzone\BackupCommands\Providers\BackupCommandsServiceProvider::class,
     //....
 ],
 ```
