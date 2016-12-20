@@ -16,8 +16,7 @@ class CreateLfeRightsTable extends Migration
 		Schema::create('lfe_rights', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
-//			$table->increments('id'); // use in postgresql
-			$table->integer('id',true); // use in mysql as increments to support foreign keys
+			$table->increments('id');
 			$table->integer('user_id')->index();
 			$table->integer('forum_id')->nullable()->index();
 			$table->boolean('is_admin')->default(FALSE)->index();

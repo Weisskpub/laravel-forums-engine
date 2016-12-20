@@ -16,8 +16,7 @@ class CreateLfeForumsTable extends Migration
 		Schema::create('lfe_forums', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
-//			$table->increments('id'); // use in postgresql
-			$table->integer('id',true); // use in mysql as increments to support foreign keys
+			$table->increments('id');
 			$table->integer('f_aggr_id')->index();
 			$table->integer('parent_id')->default(0)->index();
 			$table->smallInteger('rank')->default(0)->index();
@@ -29,7 +28,6 @@ class CreateLfeForumsTable extends Migration
 			$table->timestamps();
 			$table->index( 'created_at' );
 			$table->index( 'updated_at' );
-			$table->foreign('f_aggr_id')->references('id')->on('lfe_faggrs')->onDelete('cascade');
 		});
 	}
 
