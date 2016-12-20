@@ -24,7 +24,7 @@ composer require "h-zone/laravel-forums-engine":"dev-master"
 ### Dependent software
 Packages will be installed automatically
 * Backup commands https://github.com/h-zone/laravel-backup-commands
-* BBCode Parcer https://github.com/golonka/bbcodeparser
+* BBCode Parcer https://github.com/golonka/bbcodeparser<br/>
 **You need only setup this packages as described in their instructions**
 
 Adding the Service Provider in config/app.php
