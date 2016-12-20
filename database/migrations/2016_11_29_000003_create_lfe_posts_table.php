@@ -13,8 +13,11 @@ class CreateLfePostsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('lfe_posts', function (Blueprint $table) {
-			$table->bigIncrements('id');
+		Schema::create('lfe_posts', function (Blueprint $table)
+		{
+			$table->engine = 'InnoDB';
+			$table->increments('id');
+			$table->integer('forum_id')->index();
 			$table->integer('topic_id')->index();
 			$table->integer('user_id')->index();
 			$table->boolean('is_active')->default(TRUE)->index();

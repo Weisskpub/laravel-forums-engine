@@ -13,7 +13,9 @@ class CreateLfeFaggrsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('lfe_faggrs', function (Blueprint $table) {
+		Schema::create('lfe_faggrs', function (Blueprint $table)
+		{
+			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->smallInteger('rank')->default(0)->index();
 			$table->string('title')->index();

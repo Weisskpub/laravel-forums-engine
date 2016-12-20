@@ -13,8 +13,10 @@ class CreateLfeRightsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('lfe_rights', function (Blueprint $table) {
-			$table->bigIncrements('id');
+		Schema::create('lfe_rights', function (Blueprint $table)
+		{
+			$table->engine = 'InnoDB';
+			$table->increments('id');
 			$table->integer('user_id')->index();
 			$table->integer('forum_id')->nullable()->index();
 			$table->boolean('is_admin')->default(FALSE)->index();

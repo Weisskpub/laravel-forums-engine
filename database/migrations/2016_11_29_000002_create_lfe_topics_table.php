@@ -13,7 +13,9 @@ class CreateLfeTopicsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('lfe_topics', function (Blueprint $table) {
+		Schema::create('lfe_topics', function (Blueprint $table)
+		{
+			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->integer('forum_id')->index();
 			$table->integer('user_id')->index();
