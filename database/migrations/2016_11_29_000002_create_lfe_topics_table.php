@@ -16,7 +16,8 @@ class CreateLfeTopicsTable extends Migration
 		Schema::create('lfe_topics', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
-			$table->increments('id');
+//			$table->increments('id'); // use in postgresql
+			$table->integer('id',true); // use in mysql as increments to support foreign keys
 			$table->integer('forum_id')->index();
 			$table->integer('user_id')->index();
 			$table->boolean('is_active')->index();

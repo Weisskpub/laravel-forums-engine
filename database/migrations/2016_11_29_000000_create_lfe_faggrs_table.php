@@ -16,7 +16,8 @@ class CreateLfeFaggrsTable extends Migration
 		Schema::create('lfe_faggrs', function (Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
-			$table->increments('id');
+//			$table->increments('id'); // use in postgresql
+			$table->integer('id',true); // use in mysql as increments to support foreign keys
 			$table->smallInteger('rank')->default(0)->index();
 			$table->string('title')->index();
 			$table->boolean('is_active')->default(TRUE)->index();
